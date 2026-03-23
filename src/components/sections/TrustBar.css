@@ -1,0 +1,117 @@
+/* TrustBar tokens */
+:root {
+    --trustbar-bg:     #f5f5f3;
+    --trustbar-border: #e4e4e0;
+}
+
+/* Section */
+.trustbar {
+    background-color: var(--trustbar-bg);
+    border-bottom: 1px solid var(--trustbar-border);
+    padding: 48px 0;
+    overflow: hidden;
+}
+
+/* Label */
+.trustbar__label {
+    text-align: center;
+    font-size: 15px;
+    font-weight: 500;
+    color: #6f6f6a;
+    margin: 0 0 32px;
+    letter-spacing: 0.01em;
+}
+
+/* Marquee */
+.trustbar__track-outer {
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 8%,
+        black 92%,
+        transparent 100%
+    );
+    mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 8%,
+        black 92%,
+        transparent 100%
+    );
+}
+
+.trustbar__track {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    animation: marquee 40s linear infinite;
+    will-change: transform;
+}
+
+/* Pause on hover */
+.trustbar__track-outer:hover .trustbar__track {
+    animation-play-state: paused;
+}
+
+@keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+
+/* Logo slots */
+.trustbar__logo-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 240px;
+    flex-shrink: 0;
+    height: 72px;
+    padding: 0 16px;
+}
+
+.trustbar__logo-img {
+    width: 100%;
+    height: auto;
+    max-height: 52px;
+    display: block;
+    object-fit: contain;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .trustbar__logo-item {
+        width: 200px;
+        height: 64px;
+    }
+    .trustbar__logo-img {
+        max-height: 44px;
+    }
+}
+
+@media (max-width: 768px) {
+    .trustbar {
+        padding: 36px 0;
+    }
+    .trustbar__track {
+        animation-duration: 28s;
+    }
+    .trustbar__logo-item {
+        width: 160px;
+        height: 56px;
+    }
+    .trustbar__logo-img {
+        max-height: 36px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .trustbar__track {
+        animation: none;
+    }
+    .trustbar__track-outer {
+        -webkit-mask-image: none;
+        mask-image: none;
+        overflow-x: auto;
+    }
+}

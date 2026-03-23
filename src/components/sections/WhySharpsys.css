@@ -1,0 +1,225 @@
+/* WhySharpsys tokens */
+:root {
+    --why-bg:           #f5f5f3;
+    --why-border:       #e4e4e0;
+    --why-accent:       #1a56db;
+    --why-block-bg:     #ffffff;
+    --why-block-hover:  #f8f9ff;
+    --why-number-color: #b0b8c8;
+    --why-proof-bg:     #f0f2f8;
+    --why-proof-color:  #3a5a9a;
+    --why-statsbar-bg:  #e8edf5;
+    --why-statsbar-border: #d4dce8;
+}
+
+/* Section */
+.why {
+    background-color: var(--why-bg);
+    border-bottom: 1px solid var(--why-border);
+    padding: 56px 0 0;
+}
+
+.why__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+/* Header */
+.why__header {
+    max-width: 560px;
+    margin: 0 auto 36px;
+    text-align: center;
+}
+
+.why__eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--why-accent);
+    margin: 0 0 12px;
+}
+
+.why__heading {
+    font-size: clamp(24px, 2.6vw, 34px);
+    font-weight: 700;
+    line-height: 1.25;
+    margin: 0;
+}
+
+/* 3-column block grid */
+.why__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 32px;
+}
+
+.why__block {
+    background: var(--why-block-bg);
+    border: 1px solid var(--why-border);
+    border-radius: 12px;
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.why__block:hover {
+    background: var(--why-block-hover);
+    border-color: #c8d4ec;
+    transform: translateY(-2px);
+}
+
+.why__block-number {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--why-number-color);
+    letter-spacing: 0.05em;
+    margin-bottom: 14px;
+}
+
+.why__block-heading {
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin: 0 0 10px;
+}
+
+.why__block-copy {
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: #6b6b67;
+    margin: 0 0 16px;
+    flex: 1;
+}
+
+/* Proof line */
+.why__block-proof {
+    font-size: 11.5px;
+    font-weight: 500;
+    color: var(--why-proof-color);
+    background: var(--why-proof-bg);
+    border-radius: 6px;
+    padding: 7px 10px;
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* Stats bar — light, blends with section */
+.why__statsbar {
+    display: flex;
+    align-items: stretch;
+    background: var(--why-statsbar-bg);
+    border: 1px solid var(--why-statsbar-border);
+    border-bottom: none;
+    border-radius: 12px 12px 0 0;
+    overflow: hidden;
+}
+
+.why__stat {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 24px 20px;
+    border-right: 1px solid var(--why-statsbar-border);
+}
+
+.why__stat:last-child {
+    border-right: none;
+}
+
+.why__stat-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1a1a18;
+    line-height: 1;
+}
+
+.why__stat-label {
+    font-size: 13px;
+    color: #6b6b67;
+    text-align: center;
+}
+
+/* Quote stat */
+.why__stat--quote {
+    flex: 2;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 24px 28px;
+}
+
+.why__quote-text {
+    font-size: 13px;
+    line-height: 1.65;
+    color: #3a3a38;
+    margin: 0;
+    font-style: italic;
+}
+
+.why__quote-attribution {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.why__quote-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1a1a18;
+}
+
+.why__quote-role {
+    font-size: 12px;
+    color: #8a8a86;
+}
+
+/* Responsive */
+@media (max-width: 960px) {
+    .why__grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .why__block {
+        padding: 24px 20px;
+    }
+
+    .why__statsbar {
+        flex-direction: column;
+        border-radius: 12px 12px 0 0;
+    }
+
+    .why__stat {
+        border-right: none;
+        border-bottom: 1px solid var(--why-statsbar-border);
+        padding: 20px;
+    }
+
+    .why__stat--quote {
+        flex: 1;
+    }
+
+    .why__stat:last-child {
+        border-bottom: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .why {
+        padding: 44px 0 0;
+    }
+
+    .why__inner {
+        padding: 0 20px;
+    }
+
+    .why__header {
+        margin-bottom: 28px;
+    }
+}
