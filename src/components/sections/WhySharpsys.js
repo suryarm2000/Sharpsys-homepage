@@ -23,7 +23,7 @@ const BLOCKS = [
 
 const STATS = [
     { value: "15+", label: "Years trusted experience" },
-    { value: "45",  label: "Clients across the globe" },
+    { value: "40+",  label: "Clients across the globe" },
     {
         value: null,
         label: null,

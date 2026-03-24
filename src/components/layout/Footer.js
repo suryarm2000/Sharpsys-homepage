@@ -1,5 +1,5 @@
 import "./Footer.css";
-import logo from "../../assets/logo_main.png";
+import logo from "../../assets/logos/logo_main.png";
 import { FaXTwitter, FaInstagram, FaYoutube, FaLinkedinIn } from "react-icons/fa6";
 
 const SERVICES = [
@@ -22,6 +22,7 @@ const COMPANY = [
     { label: "About Us",     href: "/about" },
     { label: "Why Sharpsys", href: "/why-sharpsys" },
     { label: "Careers",      href: "/careers" },
+    { label: "FAQ", href: "/faq" },
     { label: "Contact Us",   href: "/contact" },
 ];
 

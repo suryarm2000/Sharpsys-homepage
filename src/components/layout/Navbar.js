@@ -1,40 +1,50 @@
 import { useState } from "react";
 import "./Navbar.css";
-import logo from "../../assets/logo_main.png";
+import logo from "../../assets/logos/logo_main.png";
+import { IoChevronDown } from "react-icons/io5";
 
 const NAV_ITEMS = [
     {
-        label: "Services",
-        dropdown: [
-            "Enterprise Solutions",
-            "CRM",
-            "Advanced Analytics",
-            "Business Intelligence",
-            "Staff Augmentation",
-        ],
-    },
-    {
-        label: "Solutions",
-        dropdown: [
-            "Microsoft Dynamics 365",
-            "Business Central",
-            "Power Platform",
-            "Gen AI Solutions",
-        ],
-    },
-    {
         label: "Products",
+        href: "/products",
         dropdown: [
-            "Quotemind",
-            "Drag to Dynamics",
-            "E-Invoicing",
-            "Smartclient",
-            "Sharpchat",
+            { label: "Quotemind",        href: "/quotemind" },
+            { label: "Drag to Dynamics", href: "/dragtodynamics" },
+            { label: "E-Invoicing",      href: "/einvoice" },
+            { label: "Smartclient",      href: "/smartclient" },
+            { label: "Sharpchat",        href: "/sharpchat" },
+            { label: "Visionmind",       href: "/visionmind" },
         ],
     },
     {
-        label: "About",
-        dropdown: null,
+        label: "Services",
+        href: "/services",
+        dropdown: [
+            { label: "Enterprise Solutions", href: "/services/enterprise-solutions" },
+            { label: "CRM",                  href: "/services/crm" },
+            { label: "Advanced Analytics",   href: "/services/advanced-analytics" },
+            { label: "Business Intelligence", href: "/services/business-intelligence" },
+            { label: "Staff Augmentation",   href: "/services/staff-augmentation" },
+        ],
+    },
+    {
+        label: "Resources",
+        href: "/resources",
+        dropdown: [
+            { label: "Case Studies",     href: "/resources/case-studies" },
+            { label: "Blog",             href: "/resources/blog" },
+            { label: "FAQ",              href: "/resources/faq" },
+            { label: "Webinars / Guides", href: "/resources/webinars" },
+        ],
+    },
+    {
+        label: "Company",
+        href: "/company",
+        dropdown: [
+            { label: "About Us",    href: "/about" },
+            { label: "Careers",     href: "/careers" },
+            { label: "Contact Us",  href: "/contact" },
+        ],
     },
 ];
 
@@ -42,8 +52,11 @@ function Navbar() {
     const [openDropdown, setOpenDropdown] = useState(null);
     const [menuOpen, setMenuOpen] = useState(false);
 
-    const handleNavEnter = (label) => setOpenDropdown(label);
-    const handleNavLeave = () => setOpenDropdown(null);
+    const handleNavClick = (label, hasDropdown) => {
+        if (!hasDropdown) return;
+        setOpenDropdown((prev) => (prev === label ? null : label));
+    };
+
     const toggleMenu = () => setMenuOpen((prev) => !prev);
 
     return (
@@ -59,31 +72,32 @@ function Navbar() {
                     />
                 </a>
 
-                {/* Nav links — immediately after logo, left-anchored */}
+                {/* Nav links */}
                 <nav className={`navbar__nav ${menuOpen ? "navbar__nav--open" : ""}`}>
                     <ul className="navbar__links">
-                        {NAV_ITEMS.map(({ label, dropdown }) => (
-                            <li
-                                key={label}
-                                className="navbar__item"
-                                onMouseEnter={() => dropdown && handleNavEnter(label)}
-                                onMouseLeave={handleNavLeave}
-                            >
-                                <a href={`/${label.toLowerCase()}`} className="navbar__link">
+                        {NAV_ITEMS.map(({ label, href, dropdown }) => (
+                            <li key={label} className="navbar__item">
+                                <a
+                                    href={href}
+                                    className={`navbar__link ${dropdown ? "navbar__link--toggle" : ""}`}
+                                    onClick={dropdown ? (e) => { e.preventDefault(); handleNavClick(label, !!dropdown); } : undefined}
+                                    aria-expanded={dropdown ? openDropdown === label : undefined}
+                                >
                                     {label}
                                     {dropdown && (
-                                        <svg className="navbar__chevron" width="12" height="12" viewBox="0 0 12 12" fill="none">
-                                            <path d="M2 4L6 8L10 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                                        </svg>
+                                        <IoChevronDown
+                                            className={`navbar__chevron ${openDropdown === label ? "navbar__chevron--open" : ""}`}
+                                            size={13}
+                                        />
                                     )}
                                 </a>
 
                                 {dropdown && openDropdown === label && (
                                     <ul className="navbar__dropdown">
                                         {dropdown.map((item) => (
-                                            <li key={item} className="navbar__dropdown-item">
-                                                <a href="#placeholder" className="navbar__dropdown-link">
-                                                    {item}
+                                            <li key={item.label} className="navbar__dropdown-item">
+                                                <a href={item.href} className="navbar__dropdown-link">
+                                                    {item.label}
                                                 </a>
                                             </li>
                                         ))}
@@ -95,8 +109,8 @@ function Navbar() {
 
                     {/* Actions — far right */}
                     <div className="navbar__actions">
-                        <a href="/login" className="navbar__login">Login</a>
-                        <a href="/schedule" className="navbar__cta">Schedule a Call</a>
+                        <a href="/" className="navbar__login">Login</a>
+                        <a href="/" className="navbar__cta">Schedule a Call</a>
                     </div>
                 </nav>
 

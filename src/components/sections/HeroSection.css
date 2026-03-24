@@ -2,8 +2,8 @@
 :root {
     --hero-bg:           #f8f8f6;
     --hero-border:       #e4e4e0;
-    --hero-accent:       #1a56db;
-    --hero-accent-dark:  #1447b3;
+    --hero-accent:       rgb(255, 45, 85);
+    --hero-accent-dark:  rgb(220, 30, 68);
     --browser-chrome-bg: #f0f0ee;
     --browser-border:    #e0e0dc;
 }
@@ -75,6 +75,7 @@
     padding: 11px 22px;
     font-size: 15px;
     font-weight: 500;
+    color: var(--hero-accent);
     border: 1.5px solid var(--hero-border);
     border-radius: 6px;
     text-decoration: none;

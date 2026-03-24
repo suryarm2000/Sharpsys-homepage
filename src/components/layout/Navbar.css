@@ -2,12 +2,14 @@
 :root {
     --color-bg-nav:         #ffffff;
     --color-border-nav:     #e8e8e4;
-    --color-text-primary:   #1a1a18;
-    --color-text-muted:     #5a5a56;
-    --color-accent:         #1a56db;
-    --color-accent-dark:    #1447b3;
+    --color-text-primary:   #0f0f0e;
+    --color-text-muted:     #1e1e1c;
+    --color-accent:         rgb(255, 45, 85);
+    --color-accent-dark:    rgb(220, 30, 68);
     --color-dropdown-bg:    #ffffff;
     --color-dropdown-hover: #f5f5f2;
+    --color-link-hover-bg:  #edf0f9;
+    --color-link-hover-txt: #1a56db;
     --font-ui:              system-ui, -apple-system, sans-serif;
     --nav-height:           64px;
     --radius-sm:            6px;
@@ -40,7 +42,6 @@
     display: flex;
     align-items: center;
     height: 100%;
-    max-width: 1200px;
     margin: 0 auto;
     padding: 0 32px;
     gap: 0;
@@ -61,12 +62,11 @@
     display: block;
 }
 
-/* ─── Nav — fills remaining space, links left-anchored ── */
+/* ─── Nav — fills remaining space ────────────────────── */
 .navbar__nav {
     display: flex;
     align-items: center;
     flex: 1;
-    /* Links left, actions pushed to far right */
     justify-content: space-between;
 }
 
@@ -88,7 +88,7 @@
     gap: 4px;
     padding: 8px 12px;
     font-size: 14px;
-    font-weight: 450;
+    font-weight: 500;
     color: var(--color-text-muted);
     text-decoration: none;
     border-radius: var(--radius-sm);
@@ -96,20 +96,25 @@
     white-space: nowrap;
 }
 
+.navbar__link--toggle {
+    cursor: pointer;
+    user-select: none;
+}
+
 .navbar__link:hover {
-    color: var(--color-text-primary);
-    background: #f5f5f2;
+    color: var(--color-link-hover-txt);
+    background: var(--color-link-hover-bg);
 }
 
 .navbar__chevron {
-    opacity: 0.5;
-    transition: transform 0.15s ease;
+    opacity: 0.45;
+    transition: transform 0.15s ease, opacity 0.15s ease;
     flex-shrink: 0;
 }
 
-.navbar__item:hover .navbar__chevron {
+.navbar__chevron--open {
     transform: rotate(180deg);
-    opacity: 0.8;
+    opacity: 0.75;
 }
 
 .navbar__dropdown {
@@ -134,16 +139,16 @@
     display: block;
     padding: 9px 14px;
     font-size: 13.5px;
-    font-weight: 400;
-    color: var(--color-text-muted);
+    font-weight: 450;
+    color: #1a1a18;
     text-decoration: none;
     border-radius: var(--radius-sm);
     transition: background 0.12s ease, color 0.12s ease;
 }
 
 .navbar__dropdown-link:hover {
-    background: var(--color-dropdown-hover);
-    color: var(--color-text-primary);
+    background: var(--color-link-hover-bg);
+    color: var(--color-link-hover-txt);
 }
 
 /* ─── Actions — far right ────────────────────────────── */
@@ -154,37 +159,45 @@
     flex-shrink: 0;
 }
 
+/* Login — */
 .navbar__login {
-    padding: 7px 14px;
-    font-size: 13.5px;
-    font-weight: 450;
-    color: var(--color-text-muted);
-    text-decoration: none;
-    border-radius: var(--radius-sm);
-    transition: color 0.15s ease, background 0.15s ease;
-}
-
-.navbar__login:hover {
-    color: var(--color-text-primary);
-    background: #f5f5f2;
-}
-
-.navbar__cta {
     display: inline-flex;
     align-items: center;
     padding: 8px 18px;
     font-size: 13.5px;
-    font-weight: 500;
+    font-weight: 600;
     color: #ffffff;
     background: var(--color-accent);
     text-decoration: none;
     border-radius: var(--radius-sm);
-    transition: background 0.15s ease;
+    border: 1.5px solid var(--color-accent);
+    transition: background 0.15s ease, border-color 0.15s ease;
+    white-space: nowrap;
+}
+
+.navbar__login:hover {
+    background: var(--color-accent-dark);
+    border-color: var(--color-accent-dark);
+}
+
+/* Schedule a Call */
+.navbar__cta {
+    display: inline-flex;
+    align-items: center;
+    padding: 7px 16px;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--color-accent);
+    background: transparent;
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    border: 1.5px solid var(--color-accent);
+    transition: background 0.15s ease, color 0.15s ease;
     white-space: nowrap;
 }
 
 .navbar__cta:hover {
-    background: var(--color-accent-dark);
+    background: rgba(255, 45, 85, 0.07);
 }
 
 /* ─── Hamburger (mobile only) ────────────────────────── */
@@ -290,14 +303,16 @@
     }
 
     .navbar__login {
-        padding: 9px 14px;
+        flex: 1;
+        justify-content: center;
+        padding: 10px 18px;
         font-size: 14px;
     }
 
     .navbar__cta {
         flex: 1;
         justify-content: center;
-        padding: 10px 18px;
+        padding: 9px 16px;
         font-size: 14px;
     }
 }
