@@ -2,10 +2,14 @@
 :root {
     --services-bg:           #ffffff;
     --services-border:       #e4e4e0;
-    --services-accent:       #1a56db;
+    --services-accent:       rgb(255, 45, 85);
+    --services-accent-dark:  rgb(220, 30, 68);
     --services-card-bg:      #f8f8f6;
-    --services-card-hover:   #f0f4ff;
+    --services-card-hover:   #fff5f7;
     --services-number-color: #b0b8c8;
+    --services-chip-bg:      #fff0f3;
+    --services-chip-color:   rgb(180, 20, 55);
+    --services-chip-border:  rgba(255, 45, 85, 0.18);
 }
 
 /* Section */
@@ -51,48 +55,125 @@
     margin: 0;
 }
 
-/* ── Grid — 3 top row, 2 centered bottom row ────────────── */
+/* ── Bento Grid ─────────────────────────────────────────── */
+
 .services__grid {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 24px;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 20px;
+    height: 720px;
 }
 
-/* First 3 cards — span 2 columns each = full row */
+/* ── Explicit card placement ────────────────────────────── */
+
+.services__card--hero {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+}
+
+/* 02 CRM — 1x wide, top row */
+.services__card:nth-child(2) {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+/* 03 Business Intelligence — 1x wide, middle row */
+.services__card:nth-child(3) {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+/* 04 Advanced Analytics — 2x wide, bottom row (1.2x tall) */
+.services__card--featured {
+    grid-column: 1;
+    grid-row: 3;
+}
+
+/* 05 Staff Augmentation — 1x wide, bottom row (1.2x tall) */
+.services__card:nth-child(5) {
+    grid-column: 2;
+    grid-row: 3;
+}
+
+/* ── Base card ──────────────────────────────────────────── */
 .services__card {
-    grid-column: span 2;
     background: var(--services-card-bg);
     border: 1px solid var(--services-border);
-    border-radius: 12px;
+    border-radius: 16px;
     padding: 32px 28px;
     display: flex;
     flex-direction: column;
-    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.2s ease, border-color 0.2s ease,
+                transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .services__card:hover {
     background: var(--services-card-hover);
-    border-color: #b8c8f0;
-    transform: translateY(-2px);
+    border-color: rgba(255, 45, 85, 0.25);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(255, 45, 85, 0.08);
 }
 
-/* 4th card starts at column 2 — centers the bottom 2 */
-.services__card:nth-child(4) {
-    grid-column: 2 / span 2;
+/* Corner arrow */
+.services__card-arrow {
+    position: absolute;
+    top: 20px;
+    right: 22px;
+    font-size: 16px;
+    color: var(--services-number-color);
+    transition: color 0.2s ease, transform 0.2s ease;
+    line-height: 1;
 }
 
-.services__card:nth-child(5) {
-    grid-column: 4 / span 2;
+.services__card:hover .services__card-arrow {
+    color: var(--services-accent);
+    transform: translate(2px, -2px);
+}
+
+/* ── Hero card (01 Enterprise) ──────────────────────────── */
+.services__card--hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--services-accent);
+    border-radius: 16px 16px 0 0;
+}
+
+.services__card--hero .services__card-title {
+    font-size: 21px;
+}
+
+.services__card--hero .services__card-description {
+    font-size: 14.5px;
+    margin-bottom: 24px;
+}
+
+/* ── Featured card (04 Advanced Analytics) ──────────────── */
+.services__card--featured .services__card-title {
+    font-size: 19px;
+}
+
+.services__card--featured .services__card-description {
+    font-size: 14px;
+    margin-bottom: 16px;
 }
 
 /* ── Card internals ─────────────────────────────────────── */
 .services__card-number {
     display: block;
-    font-size: 13px;
+    font-size: 12.5px;
     font-weight: 600;
     color: var(--services-number-color);
     letter-spacing: 0.05em;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
 }
 
 .services__card-title {
@@ -100,40 +181,67 @@
     font-weight: 700;
     line-height: 1.3;
     margin: 0 0 10px;
+    color: #1a1a18;
 }
 
 .services__card-description {
-    font-size: 13px;
+    font-size: 13.5px;
     line-height: 1.65;
     color: #6b6b67;
     margin: 0 0 20px;
     flex: 1;
 }
 
-.services__card-link {
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--services-accent);
-    text-decoration: none;
-    align-self: flex-start;
-    transition: color 0.15s ease;
+/* ── Chips ──────────────────────────────────────────────── */
+.services__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 14px;
 }
 
-.services__card-link:hover {
-    color: #1447b3;
-    text-decoration: underline;
+.services__chip {
+    font-size: 11.5px;
+    font-weight: 500;
+    color: var(--services-chip-color);
+    background: var(--services-chip-bg);
+    border: 1px solid var(--services-chip-border);
+    border-radius: 20px;
+    padding: 4px 11px;
+    white-space: nowrap;
+}
+
+/* ── Capability line ────────────────────────────────────── */
+.services__capability {
+    font-size: 11.5px;
+    font-weight: 500;
+    color: #9a9a96;
+    letter-spacing: 0.02em;
+    margin: 0;
+    padding-top: 14px;
+    border-top: 1px solid var(--services-border);
 }
 
 /* ── Responsive ─────────────────────────────────────────── */
 @media (max-width: 960px) {
     .services__grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: unset;
+        height: unset;
     }
 
-    .services__card,
-    .services__card:nth-child(4),
+    .services__card--hero,
+    .services__card--featured,
+    .services__card:nth-child(2),
+    .services__card:nth-child(3),
     .services__card:nth-child(5) {
-        grid-column: span 1;
+        grid-column: unset;
+        grid-row: unset;
+    }
+
+    .services__card--hero,
+    .services__card--featured {
+        grid-column: 1 / -1;
     }
 }
 
@@ -160,9 +268,8 @@
         grid-template-columns: 1fr;
     }
 
-    .services__card,
-    .services__card:nth-child(4),
-    .services__card:nth-child(5) {
-        grid-column: span 1;
+    .services__card--hero,
+    .services__card--featured {
+        grid-column: unset;
     }
 }

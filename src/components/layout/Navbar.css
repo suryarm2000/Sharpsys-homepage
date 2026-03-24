@@ -103,7 +103,7 @@
 
 .navbar__link:hover {
     color: var(--color-link-hover-txt);
-    background: var(--color-link-hover-bg);
+    background: transparent;
 }
 
 .navbar__chevron {

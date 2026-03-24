@@ -17,11 +17,11 @@ function CtaBand() {
                 </p>
 
                 <div className="cta__actions">
-                    <a href="/consultation" className="cta__btn-primary">
-                        Schedule a Call
-                    </a>
-                    <a href="/demo" className="cta__btn-secondary">
+                    <a href="/demo" className="cta__btn-primary">
                         Request a Demo
+                    </a>
+                    <a href="/consultations" className="cta__btn-secondary">
+                        Schedule a Call
                     </a>
                 </div>
 

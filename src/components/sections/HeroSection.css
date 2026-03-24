@@ -76,7 +76,7 @@
     font-size: 15px;
     font-weight: 500;
     color: var(--hero-accent);
-    border: 1.5px solid var(--hero-border);
+    border: 1.5px solid var(--hero-accent);
     border-radius: 6px;
     text-decoration: none;
     transition: border-color 0.15s ease, background 0.15s ease;
