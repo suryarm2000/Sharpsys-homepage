@@ -111,7 +111,7 @@ function Footer() {
             {/* Bottom bar — copyright only */}
             <div className="footer__bottom">
                 <p className="footer__copy">
-                    © 2025 Sharpsys Software Solutions (I) Pvt. Ltd. All rights reserved.
+                    © 2026 Sharpsys Software Solutions (I) Pvt. Ltd. All rights reserved.
                 </p>
             </div>
 

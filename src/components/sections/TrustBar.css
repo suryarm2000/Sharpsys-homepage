@@ -1,6 +1,6 @@
 /* TrustBar tokens */
 :root {
-    --trustbar-bg:     #f5f5f3;
+    --trustbar-bg:     white;
     --trustbar-border: #e4e4e0;
 }
 
@@ -15,11 +15,11 @@
 /* Label */
 .trustbar__label {
     text-align: center;
-    font-size: 15px;
-    font-weight: 500;
-    color: #6f6f6a;
+    font-size: 12px;
+    font-weight: 600;
+    color: #475467;
     margin: 0 0 32px;
-    letter-spacing: 0.01em;
+    letter-spacing: 0.12em;
 }
 
 /* Marquee */
@@ -45,6 +45,7 @@
     display: flex;
     align-items: center;
     width: max-content;
+    gap: 108px;
     animation: marquee 40s linear infinite;
     will-change: transform;
 }
@@ -64,17 +65,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 240px;
     flex-shrink: 0;
-    height: 72px;
-    padding: 0 16px;
+    height: 80px;
 }
 
 .trustbar__logo-img {
-    width: 100%;
-    height: auto;
-    max-height: 52px;
     display: block;
+    height: 64px;
+    width: auto;
+    max-width: 220px;
     object-fit: contain;
 }
 

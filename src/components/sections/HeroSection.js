@@ -1,32 +1,50 @@
 import "./HeroSection.css";
 import dashboardImg from "../../assets/dashboard-overview.png";
 
-function HeroSection(){
+function HeroSection() {
 
-    return(
+    const heroTitle = "Unified ERP and AI for Smarter Operations";
+    const heroWords = heroTitle.split(" ");
+
+    return (
         <section className="hero">
             <div className="hero__inner">
-                {/* Left content */}
+
+                {/* Hero content */}
                 <div className="hero__text">
-                    <h1 className="hero__heading">
-                        Microsoft Dynamics solutions that simplify operations
+
+                    <p className="hero__eyebrow">MICROSOFT CERTIFIED PARTNER • D365 + GENAI</p>
+
+                    <h1 className="hero__heading" aria-label={heroTitle}>
+                        {heroWords.map((word, index) => (
+                            <span
+                                key={index}
+                                className="hero__heading-word"
+                                style={{ animationDelay: `${index * 0.12}s` }}
+                                aria-hidden="true"
+                            >
+                                {word}
+                                {index !== heroWords.length - 1 && "\u00A0"}
+                            </span>
+                        ))}
                     </h1>
+
                     <p className="hero__subheading">
-                        Tailored Microsoft Dynamics solutions that streamline workflows, 
-                        improve visibility, and help teams make faster decisions.
+                        Sharpsys helps businesses implement Microsoft Dynamics 365, automate workflows, 
+                        and turn data into faster decisions, better visibility, and scalable growth.
                     </p>
 
                     <div className="hero__actions">
-                        <a href="/demo" className="hero__button hero__button-primary">
+                        <a href="/demo" className="hero__button-primary">
                             Request a Demo
                         </a>
-                        <a href="/contact" className="hero__button hero__button-secondary">
+                        <a href="/contact" className="hero__button-secondary">
                             Talk to an Expert
                         </a>
                     </div>
                 </div>
 
-                {/* Right visual */}
+                {/* Visual below */}
                 <div className="hero__visual">
                     <div className="hero__browser">
                         <div className="browser__screen">
@@ -38,9 +56,10 @@ function HeroSection(){
                         </div>
                     </div>
                 </div>
+
             </div>
-        </section>        
-    )
+        </section>
+    );
 }
 
 export default HeroSection;

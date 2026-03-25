@@ -1,4 +1,5 @@
 import "./ServicesSection.css";
+import dynamics365Img from "../../assets/logos/Dynamics_365.png";
 
 const SERVICES = [
     {
@@ -66,27 +67,46 @@ function ServicesSection() {
                             key={service.link}
                             className={`services__card${service.hero ? " services__card--hero" : ""}`}
                         >
-                            {/* Corner arrow */}
-                            <span className="services__card-arrow" aria-hidden="true">↗</span>
+                            {service.hero ? (
+                                /* Hero card — two column layout */
+                                <>
+                                    {/* Left: text content */}
+                                    <div className="services__hero-content">
+                                        <span className="services__card-number">{service.number}</span>
+                                        <h3 className="services__card-title">{service.title}</h3>
+                                        <p className="services__card-description">{service.description}</p>
 
-                            <span className="services__card-number">{service.number}</span>
-                            <h3 className="services__card-title">{service.title}</h3>
-                            <p className="services__card-description">{service.description}</p>
+                                        {service.chips && (
+                                            <div className="services__chips">
+                                                {service.chips.map((chip) => (
+                                                    <span key={chip} className="services__chip">{chip}</span>
+                                                ))}
+                                            </div>
+                                        )}
 
-                            {/* Chips */}
-                            {service.chips && (
-                                <div className="services__chips">
-                                    {service.chips.map((chip) => (
-                                        <span key={chip} className="services__chip">{chip}</span>
-                                    ))}
-                                </div>
+                                        {service.capability && (
+                                            <p className="services__capability">{service.capability}</p>
+                                        )}
+                                    </div>
+
+                                    {/* Right: image */}
+                                    <div className="services__hero-visual">
+                                        <img
+                                            src={dynamics365Img}
+                                            alt="Microsoft Dynamics 365 ecosystem"
+                                            className="services__hero-img"
+                                        />
+                                    </div>
+                                </>
+                            ) : (
+                                /* Standard card */
+                                <>
+                                    <span className="services__card-arrow" aria-hidden="true">↗</span>
+                                    <span className="services__card-number">{service.number}</span>
+                                    <h3 className="services__card-title">{service.title}</h3>
+                                    <p className="services__card-description">{service.description}</p>
+                                </>
                             )}
-
-                            {/* Capability line */}
-                            {service.capability && (
-                                <p className="services__capability">{service.capability}</p>
-                            )}
-
                         </a>
                     ))}
                 </div>
