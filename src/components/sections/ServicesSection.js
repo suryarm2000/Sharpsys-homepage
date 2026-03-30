@@ -1,44 +1,55 @@
+import { FiArrowRight } from "react-icons/fi";
 import "./ServicesSection.css";
-import dynamics365Img from "../../assets/logos/Dynamics_365.png";
+import dynamics365Img from "../../assets/logos/microsoft_finance.avif";
+import iconEnterprise from "../../assets/logos/erp.png";
+import iconCRM        from "../../assets/logos/crm.png";
+import iconBI         from "../../assets/logos/business-intelligence.png";
+import iconAnalytics  from "../../assets/logos/data.png";
+import iconStaff      from "../../assets/logos/staff-management.png";
 
 const SERVICES = [
     {
-        number: "01",
         title: "Enterprise Solutions",
         description:
-            "Implement Microsoft Dynamics 365 solutions across finance, operations, and business growth. From Finance & Operations and Business Central to Power Platform, we tailor each deployment to your workflows, integrations, and scale goals.",
+            "Implement Microsoft Dynamics 365 solutions that bring finance, operations, supply chain, customer service, and reporting into one connected business system. We help organizations deploy, customize, integrate, and support Dynamics 365 Finance & Operations, Business Central, and Power Platform based on real operational needs, not generic templates.",
         chips: ["Dynamics 365 F&O", "Business Central", "Power Platform"],
         capability: "Implementation · Customization · Integration · Support",
         link: "/services/enterprise-solutions",
+        cta: "Explore Enterprise",
+        icon: iconEnterprise,
         hero: true,
     },
     {
-        number: "02",
-        title: "CRM",
+        title: "CRM & Customer Engagement",
         description:
-            "Connect sales, service, and customer workflows with CRM solutions that improve visibility, response time, and relationship management across teams.",
+            "Modernize how your teams manage leads, accounts, service requests, field operations, and customer communication. Our CRM solutions are built around Microsoft Dynamics 365 to improve pipeline visibility, strengthen customer relationships, streamline service workflows, and help teams respond faster with better context across every interaction.",
         link: "/services/crm",
+        cta: "Explore CRM",
+        icon: iconCRM,
     },
     {
-        number: "03",
         title: "Business Intelligence",
         description:
-            "Build dashboards and reporting systems that help teams track KPIs, monitor performance, and make clearer business decisions.",
+            "Turn disconnected business data into dashboards, reports, and visual insights that leaders can actually use. We deliver Power BI and Tableau solutions for KPI tracking, executive reporting, self-service analytics, and real-time performance monitoring, helping teams move from static reporting to faster, more confident decision-making.",
         link: "/services/business-intelligence",
+        cta: "Explore BI",
+        icon: iconBI,
     },
     {
-        number: "04",
         title: "Advanced Analytics",
         description:
-            "Go beyond reporting with scalable analytics solutions that help teams forecast trends, improve data quality, and make faster, better decisions across the business.",
+            "Build a stronger data foundation for forecasting, optimization, and smarter business planning. Our advanced analytics services cover data migration, ETL, warehousing, analytics engineering, machine learning, and consulting, helping organizations improve data quality, unify fragmented sources, and turn raw information into actionable business intelligence.",
         link: "/services/advanced-analytics",
+        cta: "Explore Analytics",
+        icon: iconAnalytics,
     },
     {
-        number: "05",
         title: "Staff Augmentation",
         description:
-            "Extend your team with skilled Dynamics and technology professionals who can accelerate delivery, fill capability gaps, and support critical business initiatives.",
+            "Extend your delivery capacity with experienced Microsoft Dynamics and data professionals who can plug into your team quickly. We provide flexible engagement models including dedicated resources, time-and-material support, and package-based delivery so you can close skill gaps, accelerate project timelines, and maintain momentum without long hiring cycles.",
         link: "/services/staff-augmentation",
+        cta: "Explore Staffing",
+        icon: iconStaff,
     },
 ];
 
@@ -47,7 +58,7 @@ function ServicesSection() {
         <section className="services">
             <div className="services__inner">
 
-                {/* Header */}
+                {/* Section header */}
                 <div className="services__header">
                     <p className="services__eyebrow">Our Services</p>
                     <h2 className="services__heading">
@@ -59,55 +70,74 @@ function ServicesSection() {
                     </p>
                 </div>
 
-                {/* Bento Grid */}
+                {/* Bento grid */}
                 <div className="services__grid">
                     {SERVICES.map((service) => (
-                        <a
-                            href={service.link}
+                        <div
                             key={service.link}
                             className={`services__card${service.hero ? " services__card--hero" : ""}`}
                         >
                             {service.hero ? (
-                                /* Hero card — two column layout */
-                                <>
-                                    {/* Left: text content */}
-                                    <div className="services__hero-content">
-                                        <span className="services__card-number">{service.number}</span>
-                                        <h3 className="services__card-title">{service.title}</h3>
+
+                                /* ── Hero card ── */
+                                <div className="services__card-body">
+
+                                    <div className="services__hero-text">
+                                        <div className="services__card-header-row">
+                                            <img src={service.icon} alt="" className="services__card-icon" />
+                                            <h3 className="services__card-title">{service.title}</h3>
+                                        </div>
+                                        <div className="services__header-divider" />
                                         <p className="services__card-description">{service.description}</p>
-
-                                        {service.chips && (
-                                            <div className="services__chips">
-                                                {service.chips.map((chip) => (
-                                                    <span key={chip} className="services__chip">{chip}</span>
-                                                ))}
-                                            </div>
-                                        )}
-
-                                        {service.capability && (
-                                            <p className="services__capability">{service.capability}</p>
-                                        )}
+                                        <div className="services__chips">
+                                            {service.chips.map((chip) => (
+                                                <span key={chip} className="services__chip">{chip}</span>
+                                            ))}
+                                        </div>
+                                        <p className="services__capability">{service.capability}</p>
+                                        <div className="services__card-divider" />
+                                        <a href={service.link} className="services__card-footer">
+                                            <span className="services__footer-label">{service.cta}</span>
+                                            <span className="services__footer-sep" />
+                                            <span className="services__footer-arrow">
+                                                <FiArrowRight size={20} />
+                                            </span>
+                                        </a>
                                     </div>
 
-                                    {/* Right: image */}
                                     <div className="services__hero-visual">
                                         <img
                                             src={dynamics365Img}
-                                            alt="Microsoft Dynamics 365 ecosystem"
+                                            alt="Microsoft Dynamics 365 dashboard"
                                             className="services__hero-img"
                                         />
                                     </div>
-                                </>
+                                </div>
+
                             ) : (
-                                /* Standard card */
+
+                                /* ── Standard card ── */
                                 <>
-                                    <span className="services__card-arrow" aria-hidden="true">↗</span>
-                                    <span className="services__card-number">{service.number}</span>
-                                    <h3 className="services__card-title">{service.title}</h3>
-                                    <p className="services__card-description">{service.description}</p>
+                                    <div className="services__card-body">
+                                        <div className="services__card-header-row">
+                                            <img src={service.icon} alt="" className="services__card-icon" />
+                                            <h3 className="services__card-title">{service.title}</h3>
+                                        </div>
+                                        <div className="services__header-divider" />
+                                        <p className="services__card-description">{service.description}</p>
+                                    </div>
+                                    <div className="services__card-divider" />
+                                    <a href={service.link} className="services__card-footer">
+                                        <span className="services__footer-label">{service.cta}</span>
+                                        <span className="services__footer-sep" />
+                                        <span className="services__footer-arrow">
+                                            <FiArrowRight size={20} />
+                                        </span>
+                                    </a>
                                 </>
+
                             )}
-                        </a>
+                        </div>
                     ))}
                 </div>
 
