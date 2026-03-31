@@ -1,6 +1,6 @@
 /* TrustBar tokens */
 :root {
-    --trustbar-bg:     white;
+    --trustbar-bg:     rgb(248, 249, 251);
     --trustbar-border: #e4e4e0;
 }
 

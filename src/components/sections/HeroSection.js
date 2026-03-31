@@ -1,5 +1,5 @@
 import "./HeroSection.css";
-import dashboardImg from "../../assets/dashboard-overview.png";
+import dynamics365 from "../../assets/logos/microsoft_finance.jpeg";
 
 function HeroSection() {
 
@@ -49,7 +49,7 @@ function HeroSection() {
                     <div className="hero__browser">
                         <div className="browser__screen">
                             <img
-                                src={dashboardImg}
+                                src={dynamics365}
                                 alt="Sharpsys ERP Dashboard"
                                 className="browser__img"
                             />

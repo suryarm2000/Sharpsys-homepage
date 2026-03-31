@@ -160,7 +160,7 @@
         0 4px 16px rgba(0, 0, 0, 0.06),
         0 20px 60px rgba(0, 0, 0, 0.12),
         0 40px 80px rgba(0, 0, 0, 0.06);
-    height: clamp(260px, 28vw, 470px);
+    height: clamp(260px, 30vw, 470px);
     transition: box-shadow 0.3s ease, transform 0.3s ease;
     cursor: default;
 }

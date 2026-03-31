@@ -1,94 +1,138 @@
 import "./WhySharpsys.css";
+import { useInViewOnce } from "../../hooks/useInViewOnce";
 
-const BLOCKS = [
+/* ─── Card data ────────────────────────────────────────────────────────────── */
+const FLAGSHIP = {
+    tag: "Focused Roadmap",
+    title: "We scope the business first, then shape the system around it",
+    body: [
+        "Before configuration starts, we map workflows, process gaps, integrations, and operational constraints so the solution fits how your business actually runs.",
+        "Our approach blends structured planning with agile/rapid execution, giving teams a clearer path from discovery and design to deployment and go-live."
+    ],
+    proof: "Discovery → Design → Build → Training & Go-Live"
+};
+
+const SMALL_CARDS = [
     {
-        number: "01",
-        heading: "Microsoft-first business applications expertise",
-        copy: "Delivering implementations, customization, and integration across Dynamics 365, Power Platform, and Azure for connected business operations.",
-        proof: "Microsoft Certified Partner · D365 F&O · Business Central · CE · Power BI · PowerApps · Azure",
+        tag: "Reliable Predictability",
+        title: "Predictable, milestone-led delivery",
+        body: "Clear scope, defined handoffs, and go-live criteria keep projects moving without open-ended timelines or vague ownership."
     },
     {
-        number: "02",
-        heading: "Delivery with clarity from planning to go-live",
-        copy: "A blended implementation model that combines structured planning with agile execution, helping teams move faster without losing control.",
-        proof: "Waterfall + Microsoft Sure Step + Agile / Rapid implementation",
+        tag: "Product IP",
+        title: "In-house products, real use cases",
+        body: "Quotemind, E-Invoicing, Sharpchat, Smartclient, Visionmind, and Drag to Dynamics are built around real operational use cases, not generic demos."
     },
     {
-        number: "03",
-        heading: "Long-term support, not just project delivery",
-        copy: "From post-implementation support and monitoring to on-demand services and staff augmentation, Sharpsys stays involved after launch.",
-        proof: "AMC / maintenance · on-demand services · 24/7 support for critical systems",
+        tag: "Steady Performance",
+        title: "Support beyond go-live",
+        body: "We stay involved with troubleshooting, tuning, training, and ongoing support so adoption and performance do not drop after launch."
+    },
+    {
+        tag: "Agile Engagement",
+        title: "Agile execution, full visibility",
+        body: "We work beyond the UI layer across APIs, data movement, and business logic, with visibility and collaboration maintained throughout delivery."
     },
 ];
+
+const DELAYS = [0, 250, 0, 250];
 
 const STATS = [
-    { value: "15+", label: "Years trusted experience" },
-    { value: "40+",  label: "Clients across the globe" },
-    {
-        value: null,
-        label: null,
-        quote: {
-            text: "Sharpsys helped us successfully complete our AX 2012 R3 work, including integrations and ongoing support.",
-            name: "Mr. Subramanian S",
-            role: "General Manager (IT Applications)",
-            company: "Lifecell International Pvt. Ltd.",
-        },
-    },
+    { num: "15+", label: "years of ERP and\nbusiness systems delivery" },
+    { num: "40+", label: "enterprise clients\nacross industries" },
+    { num: "6",   label: "proprietary products\nbuilt on Dynamics 365" },
 ];
 
+const QUOTE = {
+    text: "Sharpsys provided excellent support during our migration of AX application and post implementation support, including integrations and ongoing maintenance.",
+    attr: "— Mr. Subramanian S, General Manager (IT Applications), Lifecell International Pvt. Ltd."
+};
+
+function FlagshipCard({ isInView }) {
+    return (
+        <div
+            className={`why__card why__card--flagship${isInView ? " why__card--visible" : ""}`}
+            style={{ "--why-card-delay": "0ms" }}
+        >
+            <p className="why__card-tag">{FLAGSHIP.tag}</p>
+            <h3 className="why__card-title">{FLAGSHIP.title}</h3>
+            <div className="why__card-divider" />
+            {FLAGSHIP.body.map((para, i) => (
+                <p key={i} className="why__card-body">{para}</p>
+            ))}
+            <span className="why__proof-chip">{FLAGSHIP.proof}</span>
+        </div>
+    );
+}
+
+function SmallCard({ card, delay, isInView }) {
+    return (
+        <div
+            className={`why__card why__card--small${isInView ? " why__card--visible" : ""}`}
+            style={{ "--why-card-delay": `${delay}ms` }}
+        >
+            <p className="why__card-tag">{card.tag}</p>
+            <h3 className="why__card-title">{card.title}</h3>
+            <div className="why__card-divider" />
+            <p className="why__card-body">{card.body}</p>
+        </div>
+    );
+}
+
 function WhySharpsys() {
+    const { elementRef: gridRef,  isInView: gridInView  } = useInViewOnce();
+    const { elementRef: proofRef, isInView: proofInView } = useInViewOnce();
+
     return (
         <section className="why">
             <div className="why__inner">
 
-                {/* Header */}
                 <div className="why__header">
                     <p className="why__eyebrow">Why Sharpsys</p>
                     <h2 className="why__heading">
-                        Built on Microsoft. Focused on business outcomes.
+                        Tailored roadmaps. Predictable delivery. Agile execution.
                     </h2>
+                    <p className="why__subheading">
+                        Sharpsys combines structured implementation, agile engagement, and long-term support 
+                        to deliver business systems that fit your operations and keep performing after go-live.
+                    </p>
                 </div>
 
-                {/* Blocks */}
-                <div className="why__grid">
-                    {BLOCKS.map((block) => (
-                        <div key={block.number} className="why__block">
-                            <span className="why__block-number">{block.number}</span>
-                            <h3 className="why__block-heading">{block.heading}</h3>
-                            <p className="why__block-copy">{block.copy}</p>
-                            <p className="why__block-proof">{block.proof}</p>
-                        </div>
+                <div ref={gridRef} className="why__grid">
+                    <FlagshipCard isInView={gridInView} />
+                    {SMALL_CARDS.map((card, index) => (
+                        <SmallCard
+                            key={card.tag}
+                            card={card}
+                            delay={DELAYS[index]}
+                            isInView={gridInView}
+                        />
                     ))}
                 </div>
 
-                {/* Stats bar */}
-                <div className="why__statsbar">
-
-                    {/* Stat 1 */}
-                    <div className="why__stat">
-                        <span className="why__stat-value">{STATS[0].value}</span>
-                        <span className="why__stat-label">{STATS[0].label}</span>
-                    </div>
-
-                    {/* Stat 2 */}
-                    <div className="why__stat">
-                        <span className="why__stat-value">{STATS[1].value}</span>
-                        <span className="why__stat-label">{STATS[1].label}</span>
-                    </div>
-
-                    {/* Client quote */}
-                    <div className="why__stat why__stat--quote">
-                        <p className="why__quote-text">"{STATS[2].quote.text}"</p>
-                        <div className="why__quote-attribution">
-                            <span className="why__quote-name">{STATS[2].quote.name}</span>
-                            <span className="why__quote-role">
-                                {STATS[2].quote.role}, {STATS[2].quote.company}
+                <div
+                    ref={proofRef}
+                    className={`why__proof${proofInView ? " why__proof--visible" : ""}`}
+                >
+                    {STATS.map((stat) => (
+                        <div key={stat.num} className="why__proof-stat">
+                            <span className="why__proof-num">{stat.num}</span>
+                            <span className="why__proof-label">
+                                {stat.label.split("\n").map((line, i) => (
+                                    <span key={i}>
+                                        {line}
+                                        {i === 0 && <br />}
+                                    </span>
+                                ))}
                             </span>
                         </div>
+                    ))}
+
+                    <div className="why__proof-quote">
+                        <p className="why__proof-quote-text">"{QUOTE.text}"</p>
+                        <p className="why__proof-quote-attr">{QUOTE.attr}</p>
                     </div>
-
-                </div>
-
+                </div>        
             </div>
         </section>
     );

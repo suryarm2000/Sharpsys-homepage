@@ -1,11 +1,10 @@
-import { FiArrowRight } from "react-icons/fi";
 import "./ServicesSection.css";
-import dynamics365Img from "../../assets/logos/microsoft_finance.avif";
-import iconEnterprise from "../../assets/logos/erp.png";
-import iconCRM        from "../../assets/logos/crm.png";
-import iconBI         from "../../assets/logos/business-intelligence.png";
-import iconAnalytics  from "../../assets/logos/data.png";
-import iconStaff      from "../../assets/logos/staff-management.png";
+import ServiceCard from "./ServiceCard";
+import iconEnterprise from "../../assets/logos/erp.svg";
+import iconCRM from "../../assets/logos/crm.jpg";
+import iconBI from "../../assets/logos/business-intelligence.png";
+import iconAnalytics from "../../assets/logos/data.png";
+import iconStaff from "../../assets/logos/staff-management.png";
 
 const SERVICES = [
     {
@@ -54,11 +53,12 @@ const SERVICES = [
 ];
 
 function ServicesSection() {
+
+    const DELAYS = [0, 0, 250, 0, 250];
+
     return (
         <section className="services">
             <div className="services__inner">
-
-                {/* Section header */}
                 <div className="services__header">
                     <p className="services__eyebrow">Our Services</p>
                     <h2 className="services__heading">
@@ -70,77 +70,15 @@ function ServicesSection() {
                     </p>
                 </div>
 
-                {/* Bento grid */}
                 <div className="services__grid">
-                    {SERVICES.map((service) => (
-                        <div
-                            key={service.link}
-                            className={`services__card${service.hero ? " services__card--hero" : ""}`}
-                        >
-                            {service.hero ? (
-
-                                /* ── Hero card ── */
-                                <div className="services__card-body">
-
-                                    <div className="services__hero-text">
-                                        <div className="services__card-header-row">
-                                            <img src={service.icon} alt="" className="services__card-icon" />
-                                            <h3 className="services__card-title">{service.title}</h3>
-                                        </div>
-                                        <div className="services__header-divider" />
-                                        <p className="services__card-description">{service.description}</p>
-                                        <div className="services__chips">
-                                            {service.chips.map((chip) => (
-                                                <span key={chip} className="services__chip">{chip}</span>
-                                            ))}
-                                        </div>
-                                        <p className="services__capability">{service.capability}</p>
-                                        <div className="services__card-divider" />
-                                        <a href={service.link} className="services__card-footer">
-                                            <span className="services__footer-label">{service.cta}</span>
-                                            <span className="services__footer-sep" />
-                                            <span className="services__footer-arrow">
-                                                <FiArrowRight size={20} />
-                                            </span>
-                                        </a>
-                                    </div>
-
-                                    <div className="services__hero-visual">
-                                        <img
-                                            src={dynamics365Img}
-                                            alt="Microsoft Dynamics 365 dashboard"
-                                            className="services__hero-img"
-                                        />
-                                    </div>
-                                </div>
-
-                            ) : (
-
-                                /* ── Standard card ── */
-                                <>
-                                    <div className="services__card-body">
-                                        <div className="services__card-header-row">
-                                            <img src={service.icon} alt="" className="services__card-icon" />
-                                            <h3 className="services__card-title">{service.title}</h3>
-                                        </div>
-                                        <div className="services__header-divider" />
-                                        <p className="services__card-description">{service.description}</p>
-                                    </div>
-                                    <div className="services__card-divider" />
-                                    <a href={service.link} className="services__card-footer">
-                                        <span className="services__footer-label">{service.cta}</span>
-                                        <span className="services__footer-sep" />
-                                        <span className="services__footer-arrow">
-                                            <FiArrowRight size={20} />
-                                        </span>
-                                    </a>
-                                </>
-
-                            )}
-                        </div>
+                    {SERVICES.map((service, index) => (
+                        <ServiceCard 
+                            key={service.link} 
+                            service={service}
+                            delay={DELAYS[index]}
+                        />
                     ))}
                 </div>
-
             </div>
         </section>
     );
