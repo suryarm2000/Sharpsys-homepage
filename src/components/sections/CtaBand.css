@@ -5,8 +5,7 @@
     --cta-btn-primary-bg:       rgb(255, 45, 85);
     --cta-btn-primary-text:     #ffffff;
     --cta-btn-primary-hover:    rgb(220, 30, 68);
-    --cta-btn-secondary-border: rgba(255, 255, 255, 0.3);
-    --cta-btn-secondary-hover:  rgba(255, 255, 255, 0.08);
+    --cta-btn-secondary-hover:  rgba(255, 45, 85, 0.04);
 }
 
 /* Section */

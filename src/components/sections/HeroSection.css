@@ -26,10 +26,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 48px;
-    max-width: 1100px;
+    gap: 24px;
     margin: 0 auto;
-    padding: 0 40px;
 }
 
 /* Text Column */
@@ -143,14 +141,70 @@
 .hero__visual {
     width: 100%;
     position: relative;
+    overflow: hidden;
     opacity: 0;
     transform: translateY(60px);
     animation: heroRevealIn 0.75s ease 1.40s forwards;
 }
 
+.hero__gallery {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    width: 100%;
+    margin: 24px 0 64px;
+}
+
+.hero__side{
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    opacity: 0.75;
+    transform-origin: center center;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.hero__side--near {
+    flex: 0 0 220px;
+}
+
+.hero__side--far {
+    flex: 0 0 160px;
+}
+
+.hero__side-img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: left top;
+}
+
+.hero__side--left.hero__side--far {
+    transform: translateX(-36px);
+    opacity: 0.30;
+}
+
+.hero__side--left.hero__side--near {
+    transform: translateX(-18px);
+    opacity: 0.60;
+}
+
+.hero__side--right.hero__side--near {
+    transform: translateX(18px);
+    opacity: 0.60;
+}
+
+.hero__side--right.hero__side--far {
+    transform: translateX(36px);
+    opacity: 0.30;
+}
+
 .hero__browser {
     position: relative;
-    z-index: 1;
+    flex: 0 0 min(1000px, 56vw);
+    width: min(1000px, 56vw);
+    z-index: 2;
     border-radius: 12px 12px 0 0;
     border: 1px solid var(--browser-border);
     overflow: hidden;
@@ -160,21 +214,14 @@
         0 4px 16px rgba(0, 0, 0, 0.06),
         0 20px 60px rgba(0, 0, 0, 0.12),
         0 40px 80px rgba(0, 0, 0, 0.06);
-    height: clamp(260px, 30vw, 470px);
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    transition: transform 0.3s ease;
     cursor: default;
 }
 
 .hero__browser:hover {
-    transform: translateY(-3px);
-    box-shadow:
-        0 0 0 1px rgba(0, 0, 0, 0.04),
-        0 4px 16px rgba(0, 0, 0, 0.08),
-        0 24px 72px rgba(0, 0, 0, 0.14),
-        0 48px 96px rgba(0, 0, 0, 0.07);
+    transform: scale(1.04);
 }
 
-/* Screenshot */
 .browser__screen {
     height: 100%;
 }
@@ -183,7 +230,7 @@
     width: 100%;
     height: 100%;
     display: block;
-    object-fit: cover;
+    object-fit: contain;
     object-position: top center;
 }
 

@@ -1,5 +1,9 @@
 import "./HeroSection.css";
 import dynamics365 from "../../assets/logos/microsoft_finance.jpeg";
+import leftImage1 from "../../assets/logos/hero_visual_4.png"
+import leftImage2 from "../../assets/logos/hero_visual_1.png";
+import rightImage1 from "../../assets/logos/hero_visual_2.png";
+import rightImage2 from "../../assets/logos/hero_visual_3.png";
 
 function HeroSection() {
 
@@ -46,12 +50,42 @@ function HeroSection() {
 
                 {/* Visual below */}
                 <div className="hero__visual">
-                    <div className="hero__browser">
-                        <div className="browser__screen">
+                    <div className="hero__gallery">
+                        <div className="hero__side hero__side--left hero__side--far">
                             <img
-                                src={dynamics365}
-                                alt="Sharpsys ERP Dashboard"
-                                className="browser__img"
+                                src={leftImage1}
+                                alt=""
+                                className="hero__side-img"
+                            />
+                        </div>
+                        <div className="hero__side hero__side--left hero__side--near">
+                            <img
+                                src={leftImage2}
+                                alt=""
+                                className="hero__side-img"
+                            />
+                        </div>
+                        <div className="hero__browser">
+                            <div className="browser__screen">
+                                <img
+                                    src={dynamics365}
+                                    alt="Sharpsys ERP Dashboard"
+                                    className="browser__img"
+                                />
+                            </div>
+                        </div>
+                        <div className="hero__side hero__side--right hero__side--near">
+                            <img
+                                src={rightImage1}
+                                alt=""
+                                className="hero__side-img"
+                            />
+                        </div>
+                        <div className="hero__side hero__side--right hero__side--far">
+                            <img
+                                src={rightImage2}
+                                alt=""
+                                className="hero__side-img"
                             />
                         </div>
                     </div>
